@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context="com.tareksaidee.android.trexscorer.Scores">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/kingdoms_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
+                android:background="#ffffff"
+                android:text="Choose Kingdom" />
+
+            <Button
+                android:id="@+id/games_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
+                android:background="#f00000"
+                android:text="Choose Game"
+                android:textColor="#ffffff" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/team1_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"
+                        android:singleLine="true"
+                        android:text="Place Holder"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/team1QueensDoubles_Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:onClick="addScore"
+                        android:text="doubles"
+                        android:textColor="#f00000"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/team1KOHDouble_Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:onClick="addScore"
+                        android:text="double"
+                        android:textColor="#f00000"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/team1Scores_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+
+                        <Button
+                            android:id="@+id/minus_button1"
+                            android:layout_width="58dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="subtractScore"
+                            android:text="-"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/team1Score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="0"
+                            android:textColor="#f00000"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/add_button1"
+                            android:layout_width="58dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="addScore"
+                            android:text="+"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/team1Rank_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <Button
+                            android:id="@+id/team1Rank1_Button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:onClick="trexButtons"
+                            android:text="rank"
+                            android:textColor="#f00000" />
+
+                        <TextView
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:background="#ffffff" />
+
+                        <Button
+                            android:id="@+id/team1Rank2_Button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:onClick="trexButtons"
+                            android:text="rank"
+                            android:textColor="#f00000" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/team1GameTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:text="Game Total: 0"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/team1KingdomTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="24dp"
+                        android:text="Kingdom Total: 0"
+                        android:textColor="#ffffff" />
+
+
+                    <TextView
+                        android:id="@+id/team1Total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="24dp"
+                        android:text="Match Total: 0"
+                        android:textColor="#f00000"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#f00000" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/team2_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"
+                        android:singleLine="true"
+                        android:text="Place Holder"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/team2QueensDoubles_Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:onClick="addScore"
+                        android:text="doubles"
+                        android:textColor="#f00000"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/team2KOHDouble_Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:onClick="addScore"
+                        android:text="double"
+                        android:textColor="#f00000"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/team2Scores_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+
+                        <Button
+                            android:id="@+id/minus_button2"
+                            android:layout_width="58dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="subtractScore"
+                            android:text="-"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/team2Score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="0"
+                            android:textColor="#f00000"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/add_button2"
+                            android:layout_width="58dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="addScore"
+                            android:text="+"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/team2Rank_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <Button
+                            android:id="@+id/team2Rank1_Button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:onClick="trexButtons"
+                            android:text="rank"
+                            android:textColor="#f00000" />
+
+                        <TextView
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:background="#ffffff" />
+
+                        <Button
+                            android:id="@+id/team2Rank2_Button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:onClick="trexButtons"
+                            android:text="rank"
+                            android:textColor="#f00000" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/team2GameTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:text="Game Total: 0"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/team2KingdomTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="24dp"
+                        android:text="Kingdom Total: 0"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/team2Total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="24dp"
+                        android:text="Match Total: 0"
+                        android:textColor="#f00000"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/totalDifference"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="16dp"
+                android:text="Teams are tied"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="newGame"
+        android:text="NEW MATCH" />
+</RelativeLayout>

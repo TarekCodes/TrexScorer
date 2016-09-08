@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.tareksaidee.android.trexscorer.MainActivity">
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:paddingTop="16dp"
+            android:text="SET TEAM NAMES"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/text_line"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_below="@id/text_name"
+            android:layout_margin="16dp"
+            android:background="#f00000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_line"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="Team #1:"
+                android:textColor="#000000" />
+
+            <EditText
+                android:id="@+id/team1Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="46dp"
+                android:layout_marginRight="46dp"
+                android:backgroundTint="#f00000"
+                android:hint="name #1"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textColorHint="#7e7e7e" />
+
+
+            <TextView
+                android:id="@+id/test_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="46dp"
+                android:text="Team #2:"
+                android:textColor="#000000" />
+
+            <EditText
+                android:id="@+id/team2Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="46dp"
+                android:layout_marginRight="46dp"
+                android:backgroundTint="#f00000"
+                android:hint="name #2"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textColorHint="#7e7e7e" />
+
+            <Button
+                android:id="@+id/beginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="36dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_marginTop="36dp"
+                android:background="#ffffff"
+                android:onClick="goTo"
+                android:text="BEGIN"
+                android:textColor="#f00000" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

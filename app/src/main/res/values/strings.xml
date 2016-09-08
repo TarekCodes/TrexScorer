@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Trex Scorer</string>
+    <string name="kingdoms_prompt">Choose Kingdom</string>
+</resources>

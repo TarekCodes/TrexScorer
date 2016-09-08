@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/slaps"
+        android:title="Slaps"/>
+
+    <item
+        android:id="@+id/diamonds"
+        android:title="Diamonds"/>
+
+    <item
+        android:id="@+id/queens"
+        android:title="Queens"/>
+    <item
+        android:id="@+id/kingOfHearts"
+        android:title="King of Hearts"/>
+    <item
+        android:id="@+id/trex"
+        android:title="Trex"/>
+</menu>
