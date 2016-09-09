@@ -618,6 +618,7 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
 }
 
 
+//TODO readme file
 //TODO figure out sharing
 //TODO fix switching horizontally deletes everything
 //TODO style the app
