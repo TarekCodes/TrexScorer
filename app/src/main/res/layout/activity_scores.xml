@@ -22,8 +22,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
                 android:background="#ffffff"
+                android:textStyle="bold"
                 android:text="Choose Kingdom" />
 
             <Button
@@ -31,18 +35,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
                 android:background="#f00000"
+                android:textStyle="bold"
                 android:text="Choose Game"
                 android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/resetButton"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
+                android:layout_width="95dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center_horizontal"
                 android:background="#ffffff"
                 android:onClick="resetGame"
+                android:textStyle="bold"
                 android:text="reset game"
                 android:visibility="gone" />
 
@@ -360,5 +368,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="newGame"
+        android:textStyle="bold"
         android:text="NEW MATCH" />
 </RelativeLayout>
