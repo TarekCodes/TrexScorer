@@ -24,6 +24,7 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
     Button team1Rank1Button, team1Rank2Button, team2Rank1Button, team2Rank2Button;
     Button team1QueensDoublesButton, team2QueensDoublesButton;
     Button team1KOHDoubleButton, team2KOHDoubleButton;
+    Button scoresResetButton;
     LinearLayout team1RankLayout, team2RankLayout;
     LinearLayout team1ScoresLayout, team2ScoresLayout;
     PopupMenu gamesPopupMenu, kingdomsPopupMenu;
@@ -81,6 +82,7 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
         team1KOHDoubleButton = (Button) findViewById(R.id.team1KOHDouble_Button);
         team2KOHDoubleButton = (Button) findViewById(R.id.team2KOHDouble_Button);
         matchTotalDifference = (TextView) findViewById(R.id.totalDifference);
+        scoresResetButton = (Button) findViewById(R.id.resetButton);
     }
 
     //handles the plus buttons for all games except trex
@@ -214,6 +216,28 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    public void resetGame(View view) {
+        if (getCurrentGame() != TREX) {
+            scoresInt[0][getCurrentKingdom()][getCurrentGame()] = 0;
+            scoresInt[1][getCurrentKingdom()][getCurrentGame()] = 0;
+            if (getCurrentGame() == QUEENS) {
+                queensDoublesInt[0][getCurrentKingdom()] = 0;
+                queensDoublesInt[1][getCurrentKingdom()] = 0;
+            }
+            if (getCurrentGame() == KOH) {
+                KOHDoubleInt[0][getCurrentKingdom()] = 0;
+                KOHDoubleInt[1][getCurrentKingdom()] = 0;
+            }
+        } else {
+            teamRanksInt[0][getCurrentKingdom()][0] = 0;
+            teamRanksInt[0][getCurrentKingdom()][1] = 0;
+            teamRanksInt[1][getCurrentKingdom()][0] = 0;
+            teamRanksInt[1][getCurrentKingdom()][1] = 0;
+        }
+        updateTotals();
+        updateTotalsLayout();
+    }
+
     //A button to start a new game after confirming the user's intention
     public void newGame(View view) {
         final Intent intent = new Intent(this, MainActivity.class);
@@ -316,6 +340,7 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
                         }
                         team1GameTotal.setText("Game Total: " + gameTotals[0][getCurrentKingdom()][getCurrentGame()]);
                         team2GameTotal.setText("Game Total: " + gameTotals[1][getCurrentKingdom()][getCurrentGame()]);
+                        scoresResetButton.setVisibility(View.VISIBLE);
                     }
                     return true;
                 }
@@ -337,6 +362,7 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
                     team2ScoresLayout.setVisibility(View.GONE);
                     team1RankLayout.setVisibility(View.GONE);
                     team2RankLayout.setVisibility(View.GONE);
+                    scoresResetButton.setVisibility(View.GONE);
                     kingdomsPopupMenuButton.setText(item.getTitle());
                     team1GameTotal.setText("Game Total: 0");
                     team2GameTotal.setText("Game Total: 0");
@@ -587,7 +613,6 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
 
 
 //TODO seperate the kingdom and game list
-//TODO add a reset scores button
 //TODO figure out sharing
 //TODO fix switching horizontally deletes everything
 //TODO style the app
