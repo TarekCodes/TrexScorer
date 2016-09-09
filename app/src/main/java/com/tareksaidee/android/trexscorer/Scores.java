@@ -58,7 +58,7 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
         team1KingdomTotal = (TextView) findViewById(R.id.team1KingdomTotal);
         team2KingdomTotal = (TextView) findViewById(R.id.team2KingdomTotal);
         gamesPopupMenuButton = (Button) findViewById(R.id.games_menu);
-        gamesPopupMenuButton.setOnClickListener(this);
+        gamesPopupMenuButton.setOnClickListener(new GameMenu());
         gamesPopupMenu = new PopupMenu(this, gamesPopupMenuButton);
         gamesPopupMenu.getMenuInflater().inflate(R.menu.games_popup_menu, gamesPopupMenu.getMenu());
         kingdomsPopupMenuButton = (Button) findViewById(R.id.kingdoms_menu);
@@ -216,6 +216,7 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    //Logic behind the scores reset button
     public void resetGame(View view) {
         if (getCurrentGame() != TREX) {
             scoresInt[0][getCurrentKingdom()][getCurrentGame()] = 0;
@@ -264,115 +265,33 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
         newGame(new View(this));
     }
 
+    //Kingdoms popup menu which handles updating the layout when a new kingdom is chosen
     @Override
     public void onClick(View view) {
-        //games popup menu which handles updating the layout when a new game is chosen
-        if (view.getId() == R.id.games_menu) {
-            gamesPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                public boolean onMenuItemClick(MenuItem item) {
-                    currentGameID = item.getItemId();
-                    gamesPopupMenuButton.setText(item.getTitle());
-                    team1QueensDoublesButton.setVisibility(View.GONE);
-                    team2QueensDoublesButton.setVisibility(View.GONE);
-                    team1KOHDoubleButton.setVisibility(View.GONE);
-                    team2KOHDoubleButton.setVisibility(View.GONE);
-                    team1ScoresLayout.setVisibility(View.GONE);
-                    team2ScoresLayout.setVisibility(View.GONE);
-                    team1RankLayout.setVisibility(View.GONE);
-                    team2RankLayout.setVisibility(View.GONE);
-                    if (getCurrentKingdom() == -1) {
-                        team1Score.setText(0 + "");
-                        team2Score.setText(0 + "");
-                        team1Rank1Button.setText(0 + "");
-                        team1Rank2Button.setText(0 + "");
-                        team2Rank1Button.setText(0 + "");
-                        team2Rank2Button.setText(0 + "");
-                    } else {
-                        if (getCurrentGame() != TREX) {
-                            if (getCurrentGame() == QUEENS) {
-                                if (queensDoublesInt[0][getCurrentKingdom()] != 0) {
-                                    team1QueensDoublesButton.setText(queensDoublesInt[0][getCurrentKingdom()] + "");
-                                } else {
-                                    team1QueensDoublesButton.setText("Doubles");
-                                }
-                                if (queensDoublesInt[1][getCurrentKingdom()] != 0) {
-                                    team2QueensDoublesButton.setText(queensDoublesInt[1][getCurrentKingdom()] + "");
-                                } else {
-                                    team2QueensDoublesButton.setText("Doubles");
-                                }
-                                team1QueensDoublesButton.setVisibility(View.VISIBLE);
-                                team2QueensDoublesButton.setVisibility(View.VISIBLE);
-                            }
-                            if (getCurrentGame() == KOH) {
-                                if (KOHDoubleInt[0][getCurrentKingdom()] != 0) {
-                                    team2KOHDoubleButton.setText(KOHDoubleInt[0][getCurrentKingdom()] + "");
-                                } else {
-                                    team2KOHDoubleButton.setText("Double");
-                                }
-                                if (KOHDoubleInt[1][getCurrentKingdom()] != 0) {
-                                    team2KOHDoubleButton.setText(KOHDoubleInt[1][getCurrentKingdom()] + "");
-                                } else {
-                                    team2KOHDoubleButton.setText("Double");
-                                }
-                                team1KOHDoubleButton.setVisibility(View.VISIBLE);
-                                team2KOHDoubleButton.setVisibility(View.VISIBLE);
-                            }
-                            team1ScoresLayout.setVisibility(View.VISIBLE);
-                            team2ScoresLayout.setVisibility(View.VISIBLE);
-                            team1Score.setText(scoresInt[0][getCurrentKingdom()][getCurrentGame()] + "");
-                            team2Score.setText(scoresInt[1][getCurrentKingdom()][getCurrentGame()] + "");
-                        } else if (getCurrentGame() == TREX) {
-                            team1RankLayout.setVisibility(View.VISIBLE);
-                            team2RankLayout.setVisibility(View.VISIBLE);
-                            if (teamRanksInt[0][getCurrentKingdom()][0] == teamRanksInt[0][getCurrentKingdom()][1] &&
-                                    teamRanksInt[0][getCurrentKingdom()][0] == teamRanksInt[1][getCurrentKingdom()][0] &&
-                                    teamRanksInt[0][getCurrentKingdom()][0] == teamRanksInt[1][getCurrentKingdom()][1]) {
-                                team1Rank1Button.setText("Rank");
-                                team1Rank2Button.setText("Rank");
-                                team2Rank1Button.setText("Rank");
-                                team2Rank2Button.setText("Rank");
-                            } else {
-                                team1Rank1Button.setText(teamRanksInt[0][getCurrentKingdom()][0] + "");
-                                team1Rank2Button.setText(teamRanksInt[0][getCurrentKingdom()][1] + "");
-                                team2Rank1Button.setText(teamRanksInt[1][getCurrentKingdom()][0] + "");
-                                team2Rank2Button.setText(teamRanksInt[1][getCurrentKingdom()][1] + "");
-                            }
-                        }
-                        team1GameTotal.setText("Game Total: " + gameTotals[0][getCurrentKingdom()][getCurrentGame()]);
-                        team2GameTotal.setText("Game Total: " + gameTotals[1][getCurrentKingdom()][getCurrentGame()]);
-                        scoresResetButton.setVisibility(View.VISIBLE);
-                    }
-                    return true;
-                }
-            });
-            gamesPopupMenu.show();
-        } else {
-            //Kingdoms popup menu which handles updating the layout when a new kingdom is chosen
-            kingdomsPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    currentKingdomID = item.getItemId();
-                    currentGameID = -1;
-                    gamesPopupMenuButton.setText("Choose Game");
-                    team1QueensDoublesButton.setVisibility(View.GONE);
-                    team2QueensDoublesButton.setVisibility(View.GONE);
-                    team1KOHDoubleButton.setVisibility(View.GONE);
-                    team2KOHDoubleButton.setVisibility(View.GONE);
-                    team1ScoresLayout.setVisibility(View.GONE);
-                    team2ScoresLayout.setVisibility(View.GONE);
-                    team1RankLayout.setVisibility(View.GONE);
-                    team2RankLayout.setVisibility(View.GONE);
-                    scoresResetButton.setVisibility(View.GONE);
-                    kingdomsPopupMenuButton.setText(item.getTitle());
-                    team1GameTotal.setText("Game Total: 0");
-                    team2GameTotal.setText("Game Total: 0");
-                    team1KingdomTotal.setText("Kingdom Total: " + kingdomTotals[0][getCurrentKingdom()]);
-                    team2KingdomTotal.setText("Kingdom Total: " + kingdomTotals[1][getCurrentKingdom()]);
-                    return true;
-                }
-            });
-            kingdomsPopupMenu.show();
-        }
+        kingdomsPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                currentKingdomID = item.getItemId();
+                currentGameID = -1;
+                gamesPopupMenuButton.setText("Choose Game");
+                team1QueensDoublesButton.setVisibility(View.GONE);
+                team2QueensDoublesButton.setVisibility(View.GONE);
+                team1KOHDoubleButton.setVisibility(View.GONE);
+                team2KOHDoubleButton.setVisibility(View.GONE);
+                team1ScoresLayout.setVisibility(View.GONE);
+                team2ScoresLayout.setVisibility(View.GONE);
+                team1RankLayout.setVisibility(View.GONE);
+                team2RankLayout.setVisibility(View.GONE);
+                scoresResetButton.setVisibility(View.GONE);
+                kingdomsPopupMenuButton.setText(item.getTitle());
+                team1GameTotal.setText("Game Total: 0");
+                team2GameTotal.setText("Game Total: 0");
+                team1KingdomTotal.setText("Kingdom Total: " + kingdomTotals[0][getCurrentKingdom()]);
+                team2KingdomTotal.setText("Kingdom Total: " + kingdomTotals[1][getCurrentKingdom()]);
+                return true;
+            }
+        });
+        kingdomsPopupMenu.show();
 
     }
 
@@ -609,10 +528,96 @@ public class Scores extends AppCompatActivity implements View.OnClickListener {
         updateTotals();
         updateTotalsLayout();
     }
+
+    //A private class that handles the games popup menu
+    private class GameMenu implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            gamesPopupMenu.setOnMenuItemClickListener(
+                    new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            currentGameID = item.getItemId();
+                            gamesPopupMenuButton.setText(item.getTitle());
+                            team1QueensDoublesButton.setVisibility(View.GONE);
+                            team2QueensDoublesButton.setVisibility(View.GONE);
+                            team1KOHDoubleButton.setVisibility(View.GONE);
+                            team2KOHDoubleButton.setVisibility(View.GONE);
+                            team1ScoresLayout.setVisibility(View.GONE);
+                            team2ScoresLayout.setVisibility(View.GONE);
+                            team1RankLayout.setVisibility(View.GONE);
+                            team2RankLayout.setVisibility(View.GONE);
+                            if (getCurrentKingdom() == -1) {
+                                team1Score.setText(0 + "");
+                                team2Score.setText(0 + "");
+                                team1Rank1Button.setText(0 + "");
+                                team1Rank2Button.setText(0 + "");
+                                team2Rank1Button.setText(0 + "");
+                                team2Rank2Button.setText(0 + "");
+                            } else {
+                                if (getCurrentGame() != TREX) {
+                                    if (getCurrentGame() == QUEENS) {
+                                        if (queensDoublesInt[0][getCurrentKingdom()] != 0) {
+                                            team1QueensDoublesButton.setText(queensDoublesInt[0][getCurrentKingdom()] + "");
+                                        } else {
+                                            team1QueensDoublesButton.setText("Doubles");
+                                        }
+                                        if (queensDoublesInt[1][getCurrentKingdom()] != 0) {
+                                            team2QueensDoublesButton.setText(queensDoublesInt[1][getCurrentKingdom()] + "");
+                                        } else {
+                                            team2QueensDoublesButton.setText("Doubles");
+                                        }
+                                        team1QueensDoublesButton.setVisibility(View.VISIBLE);
+                                        team2QueensDoublesButton.setVisibility(View.VISIBLE);
+                                    }
+                                    if (getCurrentGame() == KOH) {
+                                        if (KOHDoubleInt[0][getCurrentKingdom()] != 0) {
+                                            team2KOHDoubleButton.setText(KOHDoubleInt[0][getCurrentKingdom()] + "");
+                                        } else {
+                                            team2KOHDoubleButton.setText("Double");
+                                        }
+                                        if (KOHDoubleInt[1][getCurrentKingdom()] != 0) {
+                                            team2KOHDoubleButton.setText(KOHDoubleInt[1][getCurrentKingdom()] + "");
+                                        } else {
+                                            team2KOHDoubleButton.setText("Double");
+                                        }
+                                        team1KOHDoubleButton.setVisibility(View.VISIBLE);
+                                        team2KOHDoubleButton.setVisibility(View.VISIBLE);
+                                    }
+                                    team1ScoresLayout.setVisibility(View.VISIBLE);
+                                    team2ScoresLayout.setVisibility(View.VISIBLE);
+                                    team1Score.setText(scoresInt[0][getCurrentKingdom()][getCurrentGame()] + "");
+                                    team2Score.setText(scoresInt[1][getCurrentKingdom()][getCurrentGame()] + "");
+                                } else if (getCurrentGame() == TREX) {
+                                    team1RankLayout.setVisibility(View.VISIBLE);
+                                    team2RankLayout.setVisibility(View.VISIBLE);
+                                    if (teamRanksInt[0][getCurrentKingdom()][0] == teamRanksInt[0][getCurrentKingdom()][1] &&
+                                            teamRanksInt[0][getCurrentKingdom()][0] == teamRanksInt[1][getCurrentKingdom()][0] &&
+                                            teamRanksInt[0][getCurrentKingdom()][0] == teamRanksInt[1][getCurrentKingdom()][1]) {
+                                        team1Rank1Button.setText("Rank");
+                                        team1Rank2Button.setText("Rank");
+                                        team2Rank1Button.setText("Rank");
+                                        team2Rank2Button.setText("Rank");
+                                    } else {
+                                        team1Rank1Button.setText(teamRanksInt[0][getCurrentKingdom()][0] + "");
+                                        team1Rank2Button.setText(teamRanksInt[0][getCurrentKingdom()][1] + "");
+                                        team2Rank1Button.setText(teamRanksInt[1][getCurrentKingdom()][0] + "");
+                                        team2Rank2Button.setText(teamRanksInt[1][getCurrentKingdom()][1] + "");
+                                    }
+                                }
+                                team1GameTotal.setText("Game Total: " + gameTotals[0][getCurrentKingdom()][getCurrentGame()]);
+                                team2GameTotal.setText("Game Total: " + gameTotals[1][getCurrentKingdom()][getCurrentGame()]);
+                                scoresResetButton.setVisibility(View.VISIBLE);
+                            }
+                            return true;
+                        }
+                    });
+            gamesPopupMenu.show();
+        }
+
+    }
 }
 
 
-//TODO seperate the kingdom and game list
 //TODO figure out sharing
 //TODO fix switching horizontally deletes everything
 //TODO style the app
